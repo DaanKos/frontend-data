@@ -1,7 +1,7 @@
 import createFinalArray from "./utils/createFinalArray";
 import * as d3 from 'd3'
 import { feature } from 'topojson';
-const { select, geoPath, geoNaturalEarth1, behavior } = d3;
+const { select, geoPath, geoNaturalEarth1 } = d3;
 
 function createViz() {
   createFinalArray().then(result => {
@@ -12,17 +12,16 @@ function createViz() {
     const projection = geoNaturalEarth1()
     const pathGenerator = geoPath().projection(projection)
 
-
-    svg
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .call(d3.zoom().on("zoom", function () {
-        svg.attr("transform", d3.event.transform)
-      }))
-      .append("g")
+    var g = svg.append('g');
 
     setupMap()
     drawMap(result)
+
+    svg.call(d3.zoom().scaleExtent([1 / 8, 24]).on('zoom', onzoom));
+
+    function onzoom() {
+      g.attr('transform', d3.event.transform);
+    }
 
     function setupMap(){      
       svg
