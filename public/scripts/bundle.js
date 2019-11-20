@@ -272,7 +272,7 @@
         }
 
         function setupMap(){      
-          svg
+          g
             .append('path')
             .attr('class', 'sphere')
             .attr('d', pathGenerator({ type: 'Sphere' }));
@@ -282,7 +282,7 @@
           d3.json('https://unpkg.com/world-atlas@1.1.4/world/110m.json')
             .then(data => {
               const countries = topojson.feature(data, data.objects.countries);
-              svg
+              g
                 .selectAll('path')
                 .data(countries.features)
                 .enter()
@@ -297,7 +297,7 @@
         function plotCategoryPerCountry(result) {
             console.log("This is result in d3: ", result);
             
-            svg
+            g
                 .selectAll('text')
                 .data(result)
                 .enter()
