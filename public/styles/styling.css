@@ -47,6 +47,11 @@ a {
   align-content: center;
 }
 
+.detailSectionText {
+  font-size: .75em;
+  margin: 0 0 .25em 0;
+}
+
 #legendSvg {
   width: 20%;
 }
@@ -55,8 +60,10 @@ a {
   width: 60%;
 }
 
-#detailSvg {
+#detailSection {
   width: 20%;
+  background-color: #c4faff;
+  height: 32.5em;
 }
 
 svg {

@@ -19,7 +19,10 @@
                     countryLong: currentItem.countryLong,
                     categoryWithMostObjects: currentItem.mainCategory,
                     categoryWithMostObjectsObjectCount: currentItem.objectCountTotal,
-                    [currentItem.mainCategory]: currentItem.objectCountTotal
+                    categories: [{
+                        categoryName: currentItem.mainCategory,
+                        categoryObjCount: currentItem.objectCountTotal
+                    }]
                 };
 
                 // Push the new item to the newItems array
@@ -31,11 +34,17 @@
                 foundItem.categoryWithMostObjectsObjectCount = currentItem.objectCountTotal;
 
                 // Also add the currentItem's mainCategory to the object with it's objectCountTotal
-                foundItem[currentItem.mainCategory] = currentItem.objectCountTotal;
+                foundItem.categories.push({
+                    categoryName: currentItem.mainCategory,
+                    categoryObjCount: currentItem.objectCountTotal
+                });
             } else {
                 // If the country does exist in the new item array, check if it's mainCategory objectCountTotal is bigger than the one of the country in the array
                 // Is it smaller? Add the currentItem's mainCategory to the object with it's objectCountTotal
-                foundItem[currentItem.mainCategory] = currentItem.objectCountTotal;
+                foundItem.categories.push({
+                    categoryName: currentItem.mainCategory,
+                    categoryObjCount: currentItem.objectCountTotal
+                });
             }
 
             // Return newItems array
@@ -266,10 +275,10 @@
 
         const legendSvg = d3.select('#legendSvg');
         const mapSvg = d3.select('#mapSvg');
-        const detailSvg = d3.select('#detailSvg');
+        const detailSection = d3.select('#detailSection');
         const legendG = legendSvg.append('g');
         const mapG = mapSvg.append('g').attr("transform", "translate(-75,0)");
-        const detailG = detailSvg.append('g');
+        // const detailG = detailSvg.append('g');
         const worldMap = d3.geoNaturalEarth1();
         const pathCreator = d3.geoPath().projection(worldMap);
 
@@ -297,8 +306,13 @@
               }).then(x => {
                   countTracker(state.countryArrayFromData, state.dataCount, state.countryArrayFromMap);
               }).then(x => {
-                  drawMap(state.dataCount);
-                  drawLegend(state.dataCount);
+                  let categoryArray = state.dataCount.map(function(item){ return item.properties.categoryWithMostObjects });
+                  let uniq = [...new Set(categoryArray)];
+                  uniq.sort();
+                  let colScale = d3.scaleOrdinal().domain(uniq).range(["#4e79a7", "#f28e2c", "#e15759", "#76b7b2", "#59a14f", "#edc949", "#af7aa1", "#ff9da7", "#9c755f", "#bab0ab", "#6a3d9a", "#b15928", "#fff"]);
+
+                  drawMap(state.dataCount, colScale);
+                  drawLegend(uniq, colScale);
               });
         }
         rendermapLayout();
@@ -316,16 +330,7 @@
         return { results, dataCount }
       }
 
-        function drawMap(dataCount) {
-            console.log(dataCount);
-
-            let categoryArray = dataCount.map(function(item){ return item.properties.categoryWithMostObjects });
-            let uniq = [...new Set(categoryArray)];
-            uniq.sort();
-            console.log(uniq);
-
-            let colScale = d3.scaleOrdinal().domain(uniq).range(["#4e79a7", "#f28e2c", "#e15759", "#76b7b2", "#59a14f", "#edc949", "#af7aa1", "#ff9da7", "#9c755f", "#bab0ab", "#6a3d9a", "#b15928", "#fff"]);
-
+        function drawMap(dataCount, colScale) {
             mapG.selectAll("path")
              .data(dataCount)
              .enter()
@@ -343,19 +348,83 @@
              .on('mouseout', function() {
               d3.select(this)
                   .style('stroke-opacity', 0);
-              });
+             })
+             .on('click', function(d) {
+              drawDetail(d.properties);
+             });
         }
 
-        function drawLegend(dataCount) {
-          console.log(dataCount);
 
-          let categoryArray = dataCount.map(function(item){ return item.properties.categoryWithMostObjects });
-          let uniq = [...new Set(categoryArray)];
-          uniq.sort();
-          console.log(uniq);
-          let colScale = d3.scaleOrdinal().domain(uniq).range(["#4e79a7", "#f28e2c", "#e15759", "#76b7b2", "#59a14f", "#edc949", "#af7aa1", "#ff9da7", "#9c755f", "#bab0ab", "#6a3d9a", "#b15928", "#fff"]);
+        function drawDetail(givenData) {
+          console.log(givenData);
+          console.log(givenData.categories);
+          console.log(givenData.country);
 
+          let descSortByObjCount = function(){
+            if (givenData.categories){
+              let tempData = givenData.categories.slice(0);
+              tempData.sort(function(a,b) {
+                return b.categoryObjCount - a.categoryObjCount;
+              });
+              return tempData
+            } else {
+              return []
+            }
+          };
 
+          let countryName = function(){
+            if (givenData.country){
+              return [{name: givenData.country}]
+            } else if (givenData.name){
+              return [{name: givenData.name}]
+            }
+          };
+
+          console.log("This is countryName: ", countryName);
+          console.log("This is descmeuk: ", descSortByObjCount);
+
+          let title = detailSection.selectAll("h3")
+                                  .data(countryName)
+                                  .text(d => d.name);
+
+          title.exit()
+               .remove();
+
+          title.enter()
+               .append("h3")
+               .text(d => d.name)
+               .attr("class", "detailSectionTitle");
+
+          let categories = detailSection.selectAll("p")
+                               .data(descSortByObjCount)
+                               .text(d => d.categoryObjCount+ " objecten in " +d.categoryName.slice(4).replace(/([a-z])([A-Z])/g, '$1 $2'));
+          categories.exit()
+                 .remove();
+
+          categories.enter()
+                 .append("p")
+                 .text(d => d.categoryObjCount+ " objecten in " +d.categoryName.slice(4).replace(/([a-z])([A-Z])/g, '$1 $2'))
+                 .attr("class", "detailSectionText");
+
+        //   detailG.enter()
+        //          .append("text")
+        //          .text("Detailpagina")
+        //          .attr("x", 10)
+        //          .attr("y", 30)
+        //          .style("font-weight", "bold")
+        //          .exit()
+        //          .remove()
+
+        //   detailG.selectAll("title")
+        //          .enter()
+        //          .append("text")
+        //          .text(countryName)
+        //          .attr("x", 10)
+        //          .attr("y", 50)
+        }
+        
+
+        function drawLegend(uniq, colScale) {
           let size = 20;
           legendG.append("text")
                 .text("Legenda")

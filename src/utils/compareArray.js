@@ -16,7 +16,10 @@ export default function(results) {
                 countryLong: currentItem.countryLong,
                 categoryWithMostObjects: currentItem.mainCategory,
                 categoryWithMostObjectsObjectCount: currentItem.objectCountTotal,
-                [currentItem.mainCategory]: currentItem.objectCountTotal
+                categories: [{
+                    categoryName: currentItem.mainCategory,
+                    categoryObjCount: currentItem.objectCountTotal
+                }]
             }
 
             // Push the new item to the newItems array
@@ -28,11 +31,17 @@ export default function(results) {
             foundItem.categoryWithMostObjectsObjectCount = currentItem.objectCountTotal
 
             // Also add the currentItem's mainCategory to the object with it's objectCountTotal
-            foundItem[currentItem.mainCategory] = currentItem.objectCountTotal
+            foundItem.categories.push({
+                categoryName: currentItem.mainCategory,
+                categoryObjCount: currentItem.objectCountTotal
+            })
         } else {
             // If the country does exist in the new item array, check if it's mainCategory objectCountTotal is bigger than the one of the country in the array
             // Is it smaller? Add the currentItem's mainCategory to the object with it's objectCountTotal
-            foundItem[currentItem.mainCategory] = currentItem.objectCountTotal
+            foundItem.categories.push({
+                categoryName: currentItem.mainCategory,
+                categoryObjCount: currentItem.objectCountTotal
+            })
         }
 
         // Return newItems array
