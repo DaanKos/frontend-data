@@ -105,7 +105,7 @@ function createViz() {
           return tempData
         } else {
           return [{
-            categoryName: "dit land gevonden",
+            categoryName: "xxxxdit land gevonden",
             categoryObjCount: "Geen"
           }]
         }
