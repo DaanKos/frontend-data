@@ -15,17 +15,24 @@ export default function(results) {
                 countryLat: currentItem.countryLat,
                 countryLong: currentItem.countryLong,
                 categoryWithMostObjects: currentItem.mainCategory,
-                objectCountTotal: currentItem.objectCountTotal,
+                categoryWithMostObjectsObjectCount: currentItem.objectCountTotal,
+                [currentItem.mainCategory]: currentItem.objectCountTotal
             }
 
             // Push the new item to the newItems array
             newItems.push(newItem)
-        } else if (foundItem.objectCountTotal < currentItem.objectCountTotal) {
+        } else if (foundItem.categoryWithMostObjectsObjectCount < currentItem.objectCountTotal) {
             // If the country does exist in the new item array, check if it's mainCategory objectCountTotal is bigger than the one of the country in the array
-            // Is it bigger? Replace the categoryWithMostObjects and objectCountTotal
-            // Is it smaller? Do nothing, as this means this mainCategory isn't the biggest of the country in question
+            // Is it bigger? Replace the categoryWithMostObjects and categoryWithMostObjectsObjectCount
             foundItem.categoryWithMostObjects = currentItem.mainCategory
-            foundItem.objectCountTotal = currentItem.objectCountTotal
+            foundItem.categoryWithMostObjectsObjectCount = currentItem.objectCountTotal
+
+            // Also add the currentItem's mainCategory to the object with it's objectCountTotal
+            foundItem[currentItem.mainCategory] = currentItem.objectCountTotal
+        } else {
+            // If the country does exist in the new item array, check if it's mainCategory objectCountTotal is bigger than the one of the country in the array
+            // Is it smaller? Add the currentItem's mainCategory to the object with it's objectCountTotal
+            foundItem[currentItem.mainCategory] = currentItem.objectCountTotal
         }
 
         // Return newItems array
