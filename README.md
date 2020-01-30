@@ -77,7 +77,7 @@ Als ik nog actief aan dit project werk is het slim om af en toe een ```git pull`
 - [x] Nog meer leren omtrent het opschonen van data op een efficiente manier
 
 ## Introductie
-Voor het vak Frontend-data heb ik de opdracht gekregen om aan de slag te gaan met de database van het NMVW (Nationaal Musea van Wereldkunde).
+Voor het vak Frontend-data heb ik de opdracht gekregen om aan de slag te gaan met de database van het NMVW (Nationaal Museum van Wereldkunde).
 
 Het NMVW heeft een ontzettend grote collectie, en maar een deel hiervan wordt tentoongesteld in de musea die bij het NMVW horen. 
 Deze grote collectie is online te bekijken, maar hier komen maar weinig mensen op af.
