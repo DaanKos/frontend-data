@@ -94,7 +94,7 @@ Verder denk ik dat mijn concept eigenlijk meerdere doelgroepen kent. Het is een 
 * Klik op een land om de verdeling van de objecten met hun bijbehorende categorieënen is voor dit land.
 
 ## Gebruikte data & verwerken data
-In de applicatie wordt data opgehaald uit de collectie database van het NMVW. Hiervoor gebruik ik een SPARQL query die objecten ophaalt die aan vooraf opgestelde voorwaarden voldoen. Meer hierover in de wiki op de [SPARQL query](https://github.com/DaanKos/frontend-data/wiki/SPARQL-query) pagina. De opgehaalde data heb ik opgeschoond en getransformeerd met JavaScript, hoe ik dit heb gedaan is te lezen op de  [data ophalen en verwerken](https://github.com/DaanKos/frontend-data/wiki/Data-ophalen-en-verwerken) pagina in de wiki.
+In de applicatie wordt data opgehaald uit de collectie database van het NMVW. Hiervoor gebruik ik een SPARQL query die objecten ophaalt die aan vooraf opgestelde voorwaarden voldoen. Meer hierover in de wiki op de [SPARQL query](https://github.com/DaanKos/frontend-data/wiki/SPARQL-query) pagina. De opgehaalde data heb ik opgeschoond en getransformeerd met JavaScript, hoe ik dit heb gedaan is te lezen op de  [data ophalen en verwerken](https://github.com/DaanKos/frontend-data/wiki/3-Data-ophalen-en-verwerken) pagina in de wiki.
 
 ## Credits
 * [Hulp van Giovanni Kaaijk](https://github.com/GiovanniKaaijk)
