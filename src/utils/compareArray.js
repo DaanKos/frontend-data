@@ -30,14 +30,14 @@ export default function(results) {
             foundItem.categoryWithMostObjects = currentItem.mainCategory
             foundItem.categoryWithMostObjectsObjectCount = currentItem.objectCountTotal
 
-            // Also add the currentItem's mainCategory to the object with it's objectCountTotal
+            // Also add the currentItem's mainCategory to the categories array as an object, containing it's name and objectCountTotal
             foundItem.categories.push({
                 categoryName: currentItem.mainCategory,
                 categoryObjCount: currentItem.objectCountTotal
             })
         } else {
             // If the country does exist in the new item array, check if it's mainCategory objectCountTotal is bigger than the one of the country in the array
-            // Is it smaller? Add the currentItem's mainCategory to the object with it's objectCountTotal
+            // Is it smaller? Add the currentItem's mainCategory to the categories array as an object, containing it's name and objectCountTotal
             foundItem.categories.push({
                 categoryName: currentItem.mainCategory,
                 categoryObjCount: currentItem.objectCountTotal
