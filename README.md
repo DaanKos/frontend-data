@@ -3,7 +3,7 @@
 
 Dit is mijn repository voor het vak Frontend-data. Ik heb dit vak gevolgd van 18-11-2019 t/m 29-11-2019. Het vak is een onderdeel van de tech-track van Information Design in jaar 3 van CMD aan de HvA.
 
-![Afbeelding huidige uitwerking concept](https://i.imgur.com/5dBXyKo.png)
+![Afbeelding huidige uitwerking concept](https://i.imgur.com/La1oN9H.png)
 
 ## Inhoud
 * [Link naar de applicatie](#link-naar-de-applicatie)
@@ -23,7 +23,9 @@ Dit is mijn repository voor het vak Frontend-data. Ik heb dit vak gevolgd van 18
 Houd het ontwikkelingsproces bij in de [wiki!](https://github.com/DaanKos/frontend-data/wiki)
 
 ## Bekende bugs
-* NOG UPDATEN
+* Ik gebruik een paar hacky oplossingen voor kleine bugs
+* Sommige code kan efficienter
+* De detailpagina is wat mager vormgegeven
 
 ## Lokale installatie
 ### Installatie
