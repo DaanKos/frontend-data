@@ -23,6 +23,7 @@ Dit is mijn repository voor het vak Frontend-data. Ik heb dit vak gevolgd van 18
 Houd het ontwikkelingsproces bij in de [wiki!](https://github.com/DaanKos/frontend-data/wiki)
 
 ## Bekende bugs
+* De datavisualisatie schaalt niet goed
 * Ik gebruik een paar hacky oplossingen voor kleine bugs
 * Sommige code kan efficienter
 * De detailpagina is wat mager vormgegeven
