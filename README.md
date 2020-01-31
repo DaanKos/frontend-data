@@ -25,6 +25,7 @@ Houd het ontwikkelingsproces bij in de [wiki!](https://github.com/DaanKos/fronte
 ## Bekende bugs
 * Ik gebruik een paar hacky oplossingen voor kleine bugs
 * Sommige code kan efficienter
+* De detailpagina is wat mager vormgegeven
 
 ## Lokale installatie
 ### Installatie
