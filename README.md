@@ -103,3 +103,6 @@ In de applicatie wordt data opgehaald uit de collectie database van het NMVW. Hi
 * [Hulp van Kris Kuiper](https://github.com/kriskuiper)
 * [Hulp van Robert](https://github.com/roberrrt-s)
 * [Hulp van Laurens](https://github.com/razpudding)
+
+## License
+[MIT](https://github.com/DaanKos/frontend-data/blob/master/LICENSE)
