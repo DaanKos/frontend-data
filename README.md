@@ -23,6 +23,7 @@ Dit is mijn repository voor het vak Frontend-data. Ik heb dit vak gevolgd van 18
 Houd het ontwikkelingsproces bij in de [wiki!](https://github.com/DaanKos/frontend-data/wiki)
 
 ## Bekende bugs
+* De datavisualisatie schaalt niet goed
 * Ik gebruik een paar hacky oplossingen voor kleine bugs
 * Sommige code kan efficienter
 * De detailpagina is wat mager vormgegeven
@@ -103,3 +104,6 @@ In de applicatie wordt data opgehaald uit de collectie database van het NMVW. Hi
 * [Hulp van Kris Kuiper](https://github.com/kriskuiper)
 * [Hulp van Robert](https://github.com/roberrrt-s)
 * [Hulp van Laurens](https://github.com/razpudding)
+
+## License
+[MIT](https://github.com/DaanKos/frontend-data/blob/master/LICENSE)
